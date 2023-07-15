@@ -1,32 +1,22 @@
-def show_menu():
-    print("Menu:")
-    print('\t1 - Read notes:')
-    print('\t2 - Create new note:')
-    print('\t3 - Delete note:')
-    print('\t4 - Edit note:')
-    print('\t5 - Exit')
-    try:
-        return int(input('Please choose the desired item: '))
-    except ValueError:
-        print("You entered an invalid option. Please try again.")
-        return None
+class View:
+    @staticmethod
+    def show_menu():
+        print("\n1. View notes")
+        print("2. Add note")
+        print("3. Delete note")
+        print("4. Edit note")
+        print("5. Exit")
 
-def create_note():
-    title = input('Enter title of the note: ')
-    body = input('Enter body of the note: ')
-    return title, body
+    @staticmethod
+    def show_notes(notes):
+        if len(notes) == 0:
+            print("No notes available. Please create a note first.")
+        else:
+            for i, note in enumerate(notes, start=1):  # start index from 1
+                print(f"ID: {i}\nTitle: {note.title}\nBody: {note.body}\nTimestamp: {note.timestamp}\n")
 
-def select_note():
-    note_id = input('Enter note ID: ')
-    return note_id
-
-def edit_note():
-    note_id = input('Enter note ID: ')
-    title = input('Enter new title of the note: ')
-    body = input('Enter new body of the note: ')
-    return note_id, title, body
-
-def show_notes(notes):
-    for note in notes:
-        print(f"Title: {note.title}, Timestamp: {note.timestamp}")
-        print(f"Body: {note.body}\n")
+    @staticmethod
+    def get_note_data():
+        title = input("Enter the note title: ")
+        body = input("Enter the note body: ")
+        return title, body
